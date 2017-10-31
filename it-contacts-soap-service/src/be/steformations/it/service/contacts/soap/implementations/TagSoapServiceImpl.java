@@ -22,7 +22,7 @@ public class TagSoapServiceImpl implements TagSoapService {
 	}
 
 	@Override
-	public List<TagDto> findAll() {
+	public List<TagDto> findAllTags() {
 		java.util.List<TagDto> dtos = new java.util.ArrayList<>();
 		for (Tag t : this.dao.getAllTags()) {
 			TagDto dto = this.dtoFactory.createDto(t);
@@ -32,23 +32,23 @@ public class TagSoapServiceImpl implements TagSoapService {
 	}
 
 	@Override
-	public TagDto findOneById(int id) {
+	public TagDto findOneTagById(int id) {
 		return this.dtoFactory.createDto(this.dao.getTagById(id));
 	}
 
 	@Override
-	public TagDto findOneByValue(String value) {
+	public TagDto findOneTagByValue(String value) {
 		return this.dtoFactory.createDto(this.dao.getTagByValue(value));
 	}
 
 	@Override
-	public TagDto createAndSave(String value) {
+	public TagDto createAndSaveTag(String value) {
 		return this.dtoFactory.createDto(this.dao.createAndSaveTag(value));
 	}
 
 	@Override
-	public TagDto remove(int id) {
-		TagDto dto = this.findOneById(id);
+	public TagDto removeTag(int id) {
+		TagDto dto = this.findOneTagById(id);
 		if (dto != null){
 			this.dao.removeTag(id);;
 		}
